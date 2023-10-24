@@ -1,0 +1,14 @@
+{
+  "name": "api-taqtile",
+  "version": "1.0.0",
+  "description": "Nome do Projeto: CRUD-master-2000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^16.8.1"
+  }
+}
