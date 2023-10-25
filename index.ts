@@ -1,6 +1,5 @@
-import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone"
-
+import { ApolloServer } from '@apollo/server'
+import { startStandaloneServer } from '@apollo/server/standalone'
 
 const typeDefs = `
 
@@ -11,18 +10,19 @@ const typeDefs = `
 `
 
 const resolvers = {
-    Query: {
-        hello: () => "Hello Mundão!"
-    }
+  Query: {
+    hello: () => 'Hello Mundão!'
+  }
 }
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
+  typeDefs,
+  resolvers
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 }
+  listen: { port: 4000 }
 })
 
 console.log('Server is Running!')
