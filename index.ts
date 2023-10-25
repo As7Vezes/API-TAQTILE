@@ -4,10 +4,6 @@ import { startStandaloneServer } from "@apollo/server/standalone"
 
 const typeDefs = `
 
-    type hello {
-        hello: String
-    }
-
     type Query {
         hello: String
     }
