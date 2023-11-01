@@ -15,10 +15,10 @@ Prettier
 
 Passos para execurtar e depurar:
 
-1 - Vefirique se você tem o Node.js instalado na sua máquina
+1 - Vefirique se você tem o Node.js instalado na sua máquina.
 
-2 - Clone este repositório no seu computador
+2 - Clone este repositório no seu computador.
 
-3 - Navegue até a raiz do projeto e instale as dependências com npm install
+3 - Navegue até a raiz do projeto e instale as dependências com npm install.
 
-4 - Para rodar o projeto execute o comando npm run start:dev
+4 - Para rodar o projeto execute o comando npm run start:dev.
