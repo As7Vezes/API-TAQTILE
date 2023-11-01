@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/semi */
 import 'reflect-metadata';
 import { ApolloServer, gql } from 'apollo-server';
 import { AppDataSource } from './data-source';
@@ -7,10 +8,20 @@ const typeDefs = gql`
   type User {
     id: ID
     name: String
+    email: String
+    birthData: String
+    password: String
+  }
+
+  input UserInput {
+    name: String
+    email: String
+    password: String
+    birthData: String
   }
 
   type Mutation {
-    createUser(name: String!): User
+    createUser(data: UserInput): User
   }
 
   type Query {
@@ -27,13 +38,17 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: async (_: any, args: any) => {
+    createUser: async (_: any, { data }: { data: User }) => {
       const repo = AppDataSource.getRepository(User);
-
       const user = repo.create({
-        name: args.name,
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        birthData: data.birthData,
       });
+
       await repo.save(user);
+      console.log(data);
 
       return user;
     },
@@ -47,8 +62,9 @@ const server = new ApolloServer({
 
 AppDataSource.initialize()
   .then(() => {
+    const port = 4000;
     console.log('Database conected');
-    server.listen().then(({ url }) => {
+    server.listen(port).then(({ url }) => {
       console.log(`Server running on port ${url}`);
     });
   })

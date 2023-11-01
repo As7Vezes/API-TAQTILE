@@ -9,4 +9,13 @@ export class User {
     length: 100,
   })
   name: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  birthData: string;
+
+  @Column()
+  password: string;
 }
