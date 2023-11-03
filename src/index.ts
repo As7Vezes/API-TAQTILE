@@ -12,7 +12,6 @@ const typeDefs = gql`
     name: String
     email: String
     birthData: String
-    password: String
   }
 
   input UserInput {
@@ -43,10 +42,16 @@ const resolvers = {
     createUser: async (_: any, { data }: { data: User }) => {
       const repo = AppDataSource.getRepository(User);
 
-      const regex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
-      console.log('senha: ' + data.password);
+      const regexPassword = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+      const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-      if (!regex.test(data.password)) {
+      if (!regexEmail.test(data.email)) {
+        throw new UserInputError('O campo email dever ser um email válido', {
+          invaldArgs: ['data.email'],
+        });
+      }
+
+      if (!regexPassword.test(data.password)) {
         throw new UserInputError('Senha deve ter pelo menos 6 caracteres e pelo menos uma letra e um número.', {
           invalidArgs: ['data.password'],
         });
