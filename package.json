@@ -8,13 +8,15 @@
     "start:dev": "ts-node src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "lint": "eslint index.ts",
-    "lint-fix": "eslint --fix index.ts"
+    "lint-fix": "eslint --fix index.ts",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.12.1",
+    "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
     "graphql": "^16.8.1",
     "pg": "^8.4.0",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/mocha": "^10.0.3",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
@@ -32,6 +35,7 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-promise": "^6.1.1",
+    "mocha": "^10.2.0",
     "prettier": "^3.0.3",
     "ts-node": "^10.7.0",
     "tsx": "^3.14.0",
