@@ -1,13 +1,13 @@
 import { DataSource } from 'typeorm';
 import { join } from 'node:path';
 
-export const AppDataSource = new DataSource({
+export const AppDataSourceTest = new DataSource({
   type: 'postgres',
   host: '127.0.0.1',
-  port: 5432,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  port: 5433,
+  username: process.env.DB_USER_TEST,
+  password: process.env.DB_PASSWORD_TEST,
+  database: process.env.DB_NAME_TEST,
   synchronize: true,
   logging: true,
   entities: [join(__dirname, '../entities/*.ts')],

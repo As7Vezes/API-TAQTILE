@@ -5,19 +5,21 @@
   "description": "Nome do Projeto: CRUD-master-2000",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node src/index.ts",
+    "start:dev": "ts-node -r dotenv/config src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "lint": "eslint index.ts",
     "lint-fix": "eslint --fix index.ts",
-    "test": "mocha"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/chai": "^4.3.9",
     "apollo-server": "^3.12.1",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
     "graphql": "^16.8.1",
     "pg": "^8.4.0",
     "reflect-metadata": "^0.1.13",
@@ -25,10 +27,12 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
+    "@types/dotenv": "^8.2.0",
     "@types/mocha": "^10.0.3",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
+    "chai": "^4.3.10",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard-with-typescript": "^39.1.1",
@@ -37,7 +41,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "mocha": "^10.2.0",
     "prettier": "^3.0.3",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.9.1",
     "tsx": "^3.14.0",
     "typescript": "5.1"
   }

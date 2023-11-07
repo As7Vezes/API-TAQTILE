@@ -10,15 +10,15 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    fetchData: async () => {
-      try {
-        const response = await axios.get('http://localhost:4000/hello');
-        return response.data;
-      } catch (error) {
-        console.error(error);
-      }
-    },
     hello: () => 'Hello World!',
+  },
+  fetchData: async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/hello');
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 

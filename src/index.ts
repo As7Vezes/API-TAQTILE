@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/semi */
 import 'reflect-metadata';
 import { ApolloServer, gql } from 'apollo-server';
 import { AppDataSource } from './data-source';

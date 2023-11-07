@@ -2,7 +2,7 @@ services:
   localdb:
     image: postgres:15.1
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - ./db/dumps:/app-db-dumps
     environment:
@@ -12,10 +12,10 @@ services:
   testdb:
     image: postgres:15.1
     ports:
-      - "5433:5432"
+      - '5433:5432'
     volumes:
       - ./db/dumps:/app-db-dumps
     environment:
-      - POSTGRES_USER=userName
+      - POSTGRES_USER=userTest
       - POSTGRES_PASSWORD=senha123
-      - POSTGRES_DB=dbName
+      - POSTGRES_DB=dbTest
