@@ -5,49 +5,58 @@ const typeDefs = gql`
   type Query {
     hello: String
   }
+
+  type User {
+    name: String
+    email: String
+  }
+
+  type Mutation {
+    addUser(name: String, email: String): User
+  }
 `;
 
-const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
-  pokemons(limit: $limit, offset: $offset) {
-    count
-    next
-    previous
-    status
-    message
-    results {
-      url
+
+const gqlMutation = `
+  mutation addUser($name: String, $email: String) {
+    addUser(name: $name, email: $email) {
       name
-      image
+      email
     }
   }
-}`;
+`;
 
 const variables = {
-  limit: 2,
-  offset: 1,
+  name: 'Denys',
+  email: 'denys@email.com',
 };
 
-const apiUrl = 'https://graphql-pokeapi.graphcdn.app/';
+const apiUrl = 'http://localhost:4000';
 
-const urlComParametros = `${apiUrl}?query=${encodeURIComponent(gqlQuery)}&variables=${encodeURIComponent(JSON.stringify(variables))}`;
-
-axios.get(urlComParametros)
-  .then((response) => {
-
-    console.log('Respota do servidor', response.data);
-
-    return response
-  })
-  .catch((error) => {
-    console.error('Erro:', error);
-  });
+axios.post(apiUrl, {
+  query: gqlMutation,
+  variables,
+}, {
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then((response) => {
+  console.log('Resposta do servidor:', response.data);
+}).catch((error) => {
+  console.error('Erro:', error);
+});
 
 
 const resolvers = {
   Query: {
     hello: () => 'Hello World!',
+  },
+  Mutation: {
+    addUser: async (_, { name, email }) => {
+    
+    return { name, email };
   }
-};
+}}
 
 const server = new ApolloServer({
   typeDefs,

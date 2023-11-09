@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import { ApolloServer, gql } from 'apollo-server';
-import { AppDataSource } from './data-source';
+import { AppDataSourceTest } from './data-source-test';
 import { User } from '../entities/User';
 import { UserInputError } from 'apollo-server-errors';
 import bcrypt from 'bcrypt';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type User {
-    id: ID
+    id: String
     name: String
     email: String
     birthData: String
@@ -29,17 +29,17 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     users: async () => {
-      const repo = AppDataSource.getRepository(User);
+      const repo = AppDataSourceTest.getRepository(User);
       const users = await repo.find();
       return users;
     },
   },
   Mutation: {
     createUser: async (_: any, { data }: { data: User }) => {
-      const repo = AppDataSource.getRepository(User);
+      const repo = AppDataSourceTest.getRepository(User);
 
       const regexPassword = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
       const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -77,7 +77,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
-AppDataSource.initialize()
+AppDataSourceTest.initialize()
   .then(() => {
     const port = 4001;
     console.log('Database conected');
