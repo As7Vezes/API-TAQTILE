@@ -9,7 +9,7 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "lint": "eslint index.ts",
     "lint-fix": "eslint --fix index.ts",
-    "test": "mocha -r ts-node/register 'tests/index2.ts'"
+    "test": "mocha -r ts-node/register 'tests/**/*.ts'"
   },
   "keywords": [],
   "author": "",

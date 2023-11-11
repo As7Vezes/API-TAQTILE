@@ -1,7 +1,7 @@
-import axios from "axios";
-import { gql } from "apollo-server";
-import { ApolloServer } from "apollo-server";
-import { expect } from "chai";
+import axios from 'axios';
+import { gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
+import { expect } from 'chai';
 
 const typeDefs = gql`
   type Query {
@@ -17,7 +17,6 @@ const typeDefs = gql`
     addUser(name: String, email: String): User
   }
 `;
-
 
 const gqlMutation = `
   mutation addUser($name: String, $email: String) {
@@ -42,21 +41,30 @@ before(async () => {
 
 describe('teste para conexão com o servidor Graphql', () => {
   it('deve retornar os dados do usuário com sucesso', async () => {
-    axios.post(apiUrl, {
-      query: gqlMutation,
-      variables,
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((response) => {
-        console.log(`Resposta do servidor: ${response.data}`)
-      expect(response.data.data.addUser).to.be.deep.include(variables)
-    }).catch((error) => {
+    const response = axios
+      .post(
+        apiUrl,
+        {
+          query: gqlMutation,
+          variables,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then((response) => {
+        console.log('Resposta do servidor:', response.data);
+        expect(response.data.data.addUser).to.be.deep.include(variables);
+      })
+      .catch((error) => {
         console.error('Erro:', error);
-    });
-  })
-})
+      });
+
+    console.log(`Resposta do servidor: ${response}`);
+  });
+});
 
 const resolvers = {
   Query: {
@@ -64,10 +72,10 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (_: any, { name, email }: any) => {
-    
-    return { name, email };
-  }
-}}
+      return { name, email };
+    },
+  },
+};
 
 const server = new ApolloServer({
   typeDefs,
